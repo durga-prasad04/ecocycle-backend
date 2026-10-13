@@ -1,3 +1,4 @@
+
 package com.ecocycle.entity;
 
 import jakarta.persistence.Column;
@@ -28,6 +29,9 @@ public class Device {
 
     @Column(name = "device_condition")
     private String condition;
+
+    @Column(length = 2000)
+    private String problemDescription;
 
     private Double purchasePrice;
 
@@ -94,6 +98,14 @@ public class Device {
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    public String getProblemDescription() {
+        return problemDescription;
+    }
+
+    public void setProblemDescription(String problemDescription) {
+        this.problemDescription = problemDescription;
     }
 
     public Double getPurchasePrice() {

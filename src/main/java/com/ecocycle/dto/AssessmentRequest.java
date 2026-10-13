@@ -1,3 +1,4 @@
+
 package com.ecocycle.dto;
 
 public class AssessmentRequest {
@@ -7,6 +8,7 @@ public class AssessmentRequest {
     private String model;
     private Integer ageYears;
     private String condition;
+    private String problemDescription;
     private Double purchasePrice;
     private Double currentValue;
     private Double repairCost;
@@ -55,6 +57,14 @@ public class AssessmentRequest {
 
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    public String getProblemDescription() {
+        return problemDescription;
+    }
+
+    public void setProblemDescription(String problemDescription) {
+        this.problemDescription = problemDescription;
     }
 
     public Double getPurchasePrice() {

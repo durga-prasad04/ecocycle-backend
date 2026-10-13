@@ -1,3 +1,4 @@
+
 package com.ecocycle.controller;
 
 import java.util.List;
@@ -79,6 +80,9 @@ public class AssessmentController {
         device.setModel(request.getModel());
         device.setAgeYears(request.getAgeYears());
         device.setCondition(request.getCondition());
+        device.setProblemDescription(
+                request.getProblemDescription()
+        );
         device.setPurchasePrice(request.getPurchasePrice());
         device.setCurrentValue(request.getCurrentValue());
         device.setRepairCost(request.getRepairCost());
@@ -100,53 +104,27 @@ public class AssessmentController {
 
         history.setUser(user);
         history.setDevice(savedDevice);
-
-        history.setRecommendation(
-                result.getRecommendation()
-        );
-
-        history.setRepairScore(
-                result.getRepairScore()
-        );
-
-        history.setReuseScore(
-                result.getReuseScore()
-        );
-
-        history.setDonateScore(
-                result.getDonateScore()
-        );
-
-        history.setSellScore(
-                result.getSellScore()
-        );
-
-        history.setRecycleScore(
-                result.getRecycleScore()
-        );
-
-        history.setReason(
-                result.getReason()
-        );
+        history.setRecommendation(result.getRecommendation());
+        history.setRepairScore(result.getRepairScore());
+        history.setReuseScore(result.getReuseScore());
+        history.setDonateScore(result.getDonateScore());
+        history.setSellScore(result.getSellScore());
+        history.setRecycleScore(result.getRecycleScore());
+        history.setReason(result.getReason());
 
         if (result.getEnvironmentalImpact() != null) {
-
             history.seteWasteDiverted(
-                    result
-                            .getEnvironmentalImpact()
+                    result.getEnvironmentalImpact()
                             .getEstimatedEwasteDivertedKg()
             );
 
             history.setUsefulLifeExtension(
-                    result
-                            .getEnvironmentalImpact()
+                    result.getEnvironmentalImpact()
                             .getEstimatedUsefulLifeExtensionYears()
             );
         }
 
-        assessmentHistoryService.saveHistory(
-                history
-        );
+        assessmentHistoryService.saveHistory(history);
 
         return ResponseEntity.ok(result);
     }
@@ -174,7 +152,6 @@ public class AssessmentController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Device>> getAllAssessments() {
-
         return ResponseEntity.ok(
                 deviceService.getAllDevices()
         );
@@ -183,7 +160,6 @@ public class AssessmentController {
     @GetMapping("/history/all")
     public ResponseEntity<List<AssessmentHistory>>
     getAllAssessmentHistory() {
-
         return ResponseEntity.ok(
                 assessmentHistoryService.getAllHistory()
         );
@@ -205,8 +181,7 @@ public class AssessmentController {
         }
 
         return ResponseEntity.ok(
-                assessmentHistoryService
-                        .getHistoryByUser(user)
+                assessmentHistoryService.getHistoryByUser(user)
         );
     }
 }
